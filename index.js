@@ -1,38 +1,38 @@
-
-
-
 const winston = require('winston');
-const logger = winston.createLogger({
+const logger = new (winston.Logger)({
     exitOnError: false,
     transports: [
-        new winston.transports.File({
-            level:'silly',
-            filename:'test.log',
-            zippedArchive:false,
-            maxFiles:10,
-            maxsize:1000,
-            handleExceptions: true,
-            humanReadableUnhandledException: true,
-            tailable:true
-        })
+      new (winston.transports.File)({
+        level: 'silly',
+        filename: 'test.log',
+        maxsize: 1000,
+        maxFiles: 10,
+        json: false,
+        handleExceptions: true,
+        humanReadableUnhandledException: true,
+        zippedArchive: false,
+        tailable: true,
+        
+      })
     ]
-});
-
-logger.on('logging', function(transport) {
-    // check if this was the `File` transport
-    // if (transport.name === 'file') {
-      console.log('logged a message to', transport.filename);
-    // }
   });
 
-logger.on('error', function(err) 
-{
-    console.log(err);
-}
-);
+  logger.on('error',function(err) 
+  {
+      console.log(err);
+  }
+  );
 
+  logger.on('logging',(transport, level, msg, meta)=>{
 
+    console.log(msg);
+  });
 
+  logger.on('bhola',(transport, level, msg, meta)=>{
+    console.log(msg);
+  });
+
+ 
 logger.info('incy wincy spider'.repeat(10));
 logger.info('climbed up the water spout,'.repeat(10));
 logger.info('down came the rain and washed the spider out'.repeat(10));
