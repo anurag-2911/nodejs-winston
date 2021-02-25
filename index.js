@@ -5,8 +5,8 @@ const logger = new (winston.Logger)({
       new (winston.transports.File)({
         filename: 'output.log',
         timestamp: getTimeString,
-        maxsize: 10000,
-        maxFiles: 18,
+        maxsize: 6000,
+        maxFiles: 5,
         json: false,
         handleExceptions: true,
         humanReadableUnhandledException: true,
