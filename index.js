@@ -23,16 +23,7 @@ const logger = new (winston.Logger)({
   }
   );
 
-  logger.on('logging',(transport, level, msg, meta)=>{
-
-    // console.log(msg);
-  });
-
-  logger.on('bhola',(transport, level, msg, meta)=>{
-    // console.log(msg);
-  });
-
- 
+   
 logger.info('incy wincy spider'.repeat(10));
 logger.info('climbed up the water spout,'.repeat(10));
 logger.info('down came the rain and washed the spider out'.repeat(10));
